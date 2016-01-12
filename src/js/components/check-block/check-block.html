@@ -1,0 +1,9 @@
+<div
+    class="check-block"
+    v-bind:class="{ 'check-block--active': item.active }"
+    >
+    <label>
+        <input type="checkbox" v-model="item.active" v-bind:value="item.value">
+         ${ item.label }
+    </label>
+</div>

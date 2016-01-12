@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
+    "raw-loader": "^0.5.1",
     "vue": "^1.0.14"
   },
   "devDependencies": {

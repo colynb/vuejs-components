@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import CheckBlock from './components/check-block/check-block'
 
 Vue.config.delimiters = ['${', '}']
 
@@ -22,5 +23,8 @@ var app = new Vue({
         active: false
       }
     ]
+  },
+  components: {
+    'check-block': CheckBlock
   }
 })
