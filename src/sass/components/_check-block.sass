@@ -1,0 +1,32 @@
+.check-block
+    background-color: #ccc
+    display: inline-block
+    width: 200px
+    margin: 0 5px 5px 0
+    label
+        padding: 8px
+        margin: 0
+        display: block
+        font-weight: bold
+        color: #777
+        cursor: pointer
+        font-size: .9em
+        &::before
+            content: ""
+            display: block
+            background: url("../images/check-block-sprite.gif") no-repeat
+            background-position: bottom
+            width: 18px
+            height: 18px
+            float: left
+            margin-right: 8px
+    input
+        display: none
+    &--active
+        background-color: #D2E490
+        font-weight: bold
+        color: #76824F
+        label
+            color: #76824F
+            &::before
+                background-position: top

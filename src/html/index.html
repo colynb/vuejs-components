@@ -1,0 +1,26 @@
+{% extends 'layouts/application.html' %}
+
+{% block content %}
+    <h1>Vue Component: Checkblock</h1>
+
+    <div id="app">
+      ${ message }
+
+        <div
+            class="check-block"
+            v-bind:class="{ 'check-block--active': item.active }"
+            v-for="item in propertyTypes">
+            <label>
+                <input type="checkbox" v-model="item.active">
+                ${ item.label }
+            </label>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="javascripts/app.js"></script>
+{% endblock %}
