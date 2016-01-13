@@ -8,6 +8,15 @@
         <h2>CheckBlock</h2>
         <check-block v-for="item in propertyTypes" v-bind:item="item"></check-block>
 
+        <h2>MultiSelect</h2>
+        <multi-select
+            select-label="Select a county"
+            @item-added="addCounty"
+            @item-removed="removeCounty"
+            v-bind:selected="selectedCounties"
+            v-bind:unselected="unSelectedCounties">
+        </multi-select>
+
     </div>
 
 {% endblock %}

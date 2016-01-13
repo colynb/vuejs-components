@@ -4,18 +4,17 @@
     width: 200px
     margin: 0 5px 5px 0
     label
+        @extend .component
         padding: 8px
         margin: 0
         display: block
-        font-weight: bold
         color: #777
         cursor: pointer
-        font-size: .9em
         &::before
             content: ""
             display: block
-            background: url("../img/check-block-sprite.gif") no-repeat
-            background-position: bottom
+            background: url("../img/sprite.png") no-repeat
+            background-position: 0px -18px
             width: 18px
             height: 18px
             float: left
@@ -23,10 +22,8 @@
     input
         display: none
     &--active
-        background-color: lighten($brand-primary, 20%)
-        font-weight: bold
-        color: #76824F
         label
-            color: #fff
+            @extend .component
+            @extend .component--active
             &::before
                 background-position: top

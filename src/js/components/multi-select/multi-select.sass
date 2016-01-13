@@ -1,0 +1,24 @@
+.multi-select__items-container
+    width: 300px
+
+    .multi-select__item
+        @extend .component
+        @extend .component--active
+        display: inline-block
+        padding: 5px 5px 5px 10px
+        margin: 0 5px 5px 0
+        &::after
+            content: ""
+            display: block
+            background: url("../img/sprite.png") no-repeat
+            background-position: -1px -36px
+            width: 18px
+            height: 18px
+            float: right
+            margin-left: 8px
+            cursor: pointer
+
+.multi-select__item-selector
+    border: 0
+    padding: 5px 10px
+    font-size: 1.2em
