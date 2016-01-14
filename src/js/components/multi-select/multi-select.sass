@@ -1,5 +1,51 @@
+$light-primary: lighten($brand-primary, 20%)
+
+.multi-select [type=text]::-webkit-input-placeholder
+    color: #fff
+    font-size: .8em
+
+.multi-select
+    .typeahead, .tt-query, .tt-hint
+      width: 396px
+      height: 30px
+      padding: 8px 12px
+      font-size: 1.3em
+      line-height: 30px
+      border: none
+      outline: none
+
+    .tt-query
+
+    .tt-hint
+      color: #999
+
+    .tt-menu
+      width: 422px
+      background-color: #fff
+      border: 1px solid #ccc
+      border: 1px solid rgba(0, 0, 0, 0.2)
+
+    .typeahead
+      background-color: #ccc
+      margin-bottom: 5px
+      &:focus
+        background-color: #eee !important
+        &::-webkit-input-placeholder
+            color: #ccc
+    .tt-suggestion
+      padding: 3px 20px
+      font-size: 1.1em
+      &:hover
+        cursor: pointer
+        color: #fff
+        background-color: $light-primary
+      &.tt-cursor
+        color: #fff
+        background-color: $light-primary
+      p
+        margin: 0
+
 .multi-select__items-container
-    width: 300px
 
 .multi-select__item
     @extend .component
@@ -20,5 +66,5 @@
 
 .multi-select__item-selector
     border: 0
-    background-color: lighten($brand-primary, 40%)
+    background-color: #eee
     font-size: 1.2em

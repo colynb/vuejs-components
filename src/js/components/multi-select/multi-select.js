@@ -16,7 +16,7 @@ var itemLabelMatcher = function (items) {
     // contains the substring `q`, add it to the `matches` array
     $.each(items, function (i, item) {
       if (substringRegex.test(item.label)) {
-        matches.push(item.label)
+        matches.push(item)
       }
     })
 
@@ -28,38 +28,38 @@ export default Vue.extend({
   template: require('raw!./multi-select.html'),
   props: ['selected', 'unselected', 'selectLabel'],
   ready: function () {
-    var $typeahead = $(this.$el).find('.typeahead')
-    $typeahead.typeahead(null, {
-      name: 'items',
-      limit: 10,
-      source: itemLabelMatcher(this.unselected)
-    })
+    this.initTypeahead()
   },
   data: function () {
     return {
-      selectedItem: 'select'
+      selectedItem: ''
     }
   },
   watch: {
-    selectedItem: function (item) {
-      if (item) {
-        this.$dispatch('item-added', item)
-        this.selectedItem = 'select'
-      }
-    },
     unselected: function (unselected) {
-      var $typeahead = $(this.$el).find('.typeahead')
-      $typeahead.typeahead('destroy')
-      $typeahead.typeahead(null, {
-        name: 'items',
-        limit: 10,
-        source: itemLabelMatcher(unselected)
-      })
+      this.initTypeahead()
     }
   },
   methods: {
+    initTypeahead: function () {
+      var $typeahead = $(this.$el).find('.typeahead')
+      $typeahead.typeahead('destroy')
+      $typeahead.unbind('typeahead:select')
+      $typeahead.typeahead(null, {
+        name: 'items',
+        display: 'label',
+        limit: 10,
+        source: itemLabelMatcher(this.unselected)
+      })
+
+      $typeahead.bind('typeahead:select', function (e, item) {
+        this.$dispatch('item-added', item.value)
+        this.selectedItem = ''
+      }.bind(this))
+    },
     removeItem: function (item) {
       this.$dispatch('item-removed', item)
+      this.selectedItem = ''
     }
   }
 })
