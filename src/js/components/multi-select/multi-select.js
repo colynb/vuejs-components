@@ -26,40 +26,52 @@ var itemLabelMatcher = function (items) {
 
 export default Vue.extend({
   template: require('raw!./multi-select.html'),
-  props: ['selected', 'unselected', 'selectLabel'],
+  props: ['options', 'selectLabel'],
   ready: function () {
     this.initTypeahead()
-  },
-  data: function () {
-    return {
-      selectedItem: ''
-    }
   },
   watch: {
     unselected: function (unselected) {
       this.initTypeahead()
     }
   },
+  computed: {
+    selected: function () {
+      return this.options.filter(function (option) {
+        return option.selected
+      })
+    },
+    unselected: function () {
+      return this.options.filter(function (option) {
+        return !option.selected
+      })
+    }
+  },
   methods: {
     initTypeahead: function () {
-      var $typeahead = $(this.$el).find('.typeahead')
+      this.$typeahead = $(this.$el).find('.typeahead')
+      var $typeahead = this.$typeahead
       $typeahead.typeahead('destroy')
       $typeahead.unbind('typeahead:select')
-      $typeahead.typeahead(null, {
+      var options = {
+        minLength: 0,
+        highlight: true
+      }
+      $typeahead.typeahead(options, {
         name: 'items',
         display: 'label',
         limit: 10,
         source: itemLabelMatcher(this.unselected)
       })
 
-      $typeahead.bind('typeahead:select', function (e, item) {
+      $typeahead.on('typeahead:select', function (e, item) {
         this.$dispatch('item-added', item.value)
-        this.selectedItem = ''
+        $typeahead.typeahead('val', '')
       }.bind(this))
     },
     removeItem: function (item) {
       this.$dispatch('item-removed', item)
-      this.selectedItem = ''
+      this.$typeahead.typeahead('val', '')
     }
   }
 })

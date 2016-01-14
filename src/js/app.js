@@ -39,18 +39,6 @@ var app = new Vue({
       }
     ]
   },
-  computed: {
-    selectedCounties: function () {
-      return this.counties.filter(function (county) {
-        return county.selected
-      })
-    },
-    unSelectedCounties: function () {
-      return this.counties.filter(function (county) {
-        return !county.selected
-      })
-    }
-  },
   methods: {
     addCounty: function (countyValue) {
       this.counties = this.counties.map(function (c) {

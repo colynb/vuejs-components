@@ -1,5 +1,5 @@
 <div class="multi-select">
-    <input class="typeahead" type="text" placeholder="Click to select a county..." v-model="selectedItem">
+    <input class="typeahead" type="text" placeholder="Click to select a county...">
     <div class="multi-select__items-container">
         <span class="multi-select__item" v-for="item in selected" v-on:click="removeItem(item)">${ item.label }</span>
     </div>
