@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import $ from 'jquery'
 import 'typeahead.js'
+import { compareLabel } from '../../lib/utils'
 
 var itemLabelMatcher = function (items) {
   return function findMatches (q, cb) {
@@ -36,15 +37,22 @@ export default Vue.extend({
     }
   },
   computed: {
+    isDisabled: function () {
+      return !this.unselected.length
+    },
     selected: function () {
-      return this.options.filter(function (option) {
+      var options = this.options.filter(function (option) {
         return option.selected
       })
+      options.sort(compareLabel)
+      return options
     },
     unselected: function () {
-      return this.options.filter(function (option) {
+      var options = this.options.filter(function (option) {
         return !option.selected
       })
+      options.sort(compareLabel)
+      return options
     }
   },
   methods: {

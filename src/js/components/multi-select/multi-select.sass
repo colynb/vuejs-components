@@ -3,8 +3,15 @@ $light-primary: lighten($brand-primary, 20%)
 .multi-select [type=text]::-webkit-input-placeholder
     color: #fff
     font-size: .8em
+    background: none
+
+.multi-select [type=text]
+    &:disabled
+      background-color: #eee !important
+      cursor: not-allowed
 
 .multi-select
+
     .typeahead, .tt-query, .tt-hint
       width: 396px
       height: 30px
@@ -24,6 +31,8 @@ $light-primary: lighten($brand-primary, 20%)
       background-color: #fff
       border: 1px solid #ccc
       border: 1px solid rgba(0, 0, 0, 0.2)
+      max-height: 150px
+      overflow-y: auto
 
     .typeahead
       background-color: #ccc
@@ -53,6 +62,9 @@ $light-primary: lighten($brand-primary, 20%)
     display: inline-block
     padding: 5px 5px 5px 10px
     margin: 0 5px 5px 0
+    cursor: pointer
+    opacity: 0
+    animation: new-item-animation .3s linear forwards
     &::after
         content: ""
         display: block
@@ -62,9 +74,16 @@ $light-primary: lighten($brand-primary, 20%)
         height: 18px
         float: right
         margin-left: 8px
-        cursor: pointer
 
 .multi-select__item-selector
     border: 0
     background-color: #eee
     font-size: 1.2em
+
+
+@keyframes new-item-animation
+    from
+        opacity: 0
+
+    to
+        opacity: 1

@@ -11,45 +11,19 @@ var app = new Vue({
   },
   data: {
     propertyTypes: [],
-    counties: [
-      {
-        label: 'Boulder',
-        value: 'boulder',
-        selected: true
-      },
-      {
-        label: 'Douglas',
-        value: 'douglas',
-        selected: true
-      },
-      {
-        label: 'Asdasaasd',
-        value: 'sdfsdf',
-        selected: false
-      },
-      {
-        label: 'ewrtertert',
-        value: 'ewrtertert',
-        selected: false
-      },
-      {
-        label: 'yuiyui',
-        value: 'yuiyui',
-        selected: false
-      }
-    ]
+    states: []
   },
   methods: {
-    addCounty: function (countyValue) {
-      this.counties = this.counties.map(function (c) {
-        if (c.value === countyValue) {
+    addState: function (stateValue) {
+      this.states = this.states.map(function (c) {
+        if (c.value === stateValue) {
           c.selected = true
         }
         return c
       })
     },
-    removeCounty: function (county) {
-      county.selected = false
+    removeState: function (state) {
+      state.selected = false
     },
     fetchData: function () {
       // simulate ajax request
@@ -71,7 +45,26 @@ var app = new Vue({
             active: false
           }
         ]
-      }.bind(this), 1)
+
+        this.states = [{'label': 'Indiana', 'value': 'IN', 'selected': false},
+          {'label': 'Alabama', 'value': 'AL', 'selected': false},
+          {'label': 'California', 'value': 'CA', 'selected': false},
+          {'label': 'Colorado', 'value': 'CO', 'selected': false},
+          {'label': 'Florida', 'value': 'FL', 'selected': false},
+          {'label': 'Georgia', 'value': 'GA', 'selected': false},
+          {'label': 'Kentucky', 'value': 'KY', 'selected': false},
+          {'label': 'Massachusetts', 'value': 'MA', 'selected': false},
+          {'label': 'Michigan', 'value': 'MI', 'selected': false},
+          {'label': 'Missouri', 'value': 'MO', 'selected': false},
+          {'label': 'Nevada', 'value': 'NV', 'selected': false},
+          {'label': 'North Carolina', 'value': 'NC', 'selected': false},
+          {'label': 'Ohio', 'value': 'OH', 'selected': false},
+          {'label': 'Pennsylvania', 'value': 'PA', 'selected': false},
+          {'label': 'Tennessee', 'value': 'TN', 'selected': false},
+          {'label': 'Texas', 'value': 'TX', 'selected': false},
+          {'label': 'Washington', 'value': 'WA', 'selected': false},
+          {'label': 'Wisconsin', 'value': 'WI', 'selected': false}]
+      }.bind(this), 2000)
     }
   },
   components: {
