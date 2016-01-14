@@ -26,6 +26,16 @@ var app = new Vue({
         label: 'Asdasaasd',
         value: 'sdfsdf',
         selected: false
+      },
+      {
+        label: 'ewrtertert',
+        value: 'ewrtertert',
+        selected: false
+      },
+      {
+        label: 'yuiyui',
+        value: 'yuiyui',
+        selected: false
       }
     ]
   },
