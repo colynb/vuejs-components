@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
+    "ion-rangeslider": "^2.1.2",
     "jquery": "^2.2.0",
     "raw-loader": "^0.5.1",
     "typeahead.js": "^0.11.1",

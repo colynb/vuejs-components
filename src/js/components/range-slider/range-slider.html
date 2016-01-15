@@ -1,0 +1,21 @@
+<div class="range-slider">
+  <pre>
+    ${ $data | json }
+  </pre>
+  <div class="range-slider__input__container">
+      <input
+        type="range-slider"
+        v-ion-slider
+        :options="options" />
+  </div>
+  <div class="range-slider__output__container">
+        <div class="range-slider__output__min">
+            <label for="">From</label>
+            <input type="number" class="range-slider__output" data-type="from" v-bind:value="from" v-on:change="onChange">
+        </div>
+        <div class="range-slider__output__max">
+            <label for="">To</label>
+            <input type="number" class="range-slider__output" data-type="to" v-bind:value="to" v-on:change="onChange">
+        </div>
+  </div>
+</div>

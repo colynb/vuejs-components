@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import CheckBlock from './components/check-block/check-block'
 import MultiSelect from './components/multi-select/multi-select'
+import RangeSlider from './components/range-slider/range-slider'
 
 Vue.config.delimiters = ['${', '}']
+
+Vue.transition('bounce', {
+  enterClass: 'bounceInLeft',
+  leaveClass: 'bounceOutRight'
+})
 
 var app = new Vue({
   el: '#app',
@@ -11,9 +17,23 @@ var app = new Vue({
   },
   data: {
     propertyTypes: [],
-    states: []
+    states: [],
+    propertyOfferPrice: {
+      from: 20,
+      to: 50
+    },
+    sliderTwo: {
+      from: 200,
+      to: 500
+    }
   },
   methods: {
+    handleSliderTwoChange: function (sliderTwo) {
+      this.sliderTwo = Object.assign(this.sliderTwo, sliderTwo)
+    },
+    handlePropertyOfferPriceChange: function (propertyOfferPrice) {
+      this.propertyOfferPrice = Object.assign(this.propertyOfferPrice, propertyOfferPrice)
+    },
     addState: function (stateValue) {
       this.states = this.states.map(function (c) {
         if (c.value === stateValue) {
@@ -64,11 +84,14 @@ var app = new Vue({
           {'label': 'Texas', 'value': 'TX', 'selected': false},
           {'label': 'Washington', 'value': 'WA', 'selected': false},
           {'label': 'Wisconsin', 'value': 'WI', 'selected': false}]
-      }.bind(this), 2000)
+
+        this.sliderTwo.from = 300
+        this.sliderTwo.to = 600
+      }.bind(this), 1)
     }
   },
   components: {
-    'check-block': CheckBlock,
-    'multi-select': MultiSelect
-  }
+    CheckBlock,
+    MultiSelect,
+  RangeSlider}
 })

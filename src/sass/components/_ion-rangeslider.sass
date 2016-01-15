@@ -1,0 +1,86 @@
+.irs
+  height: 55px
+
+.irs-with-grid
+  height: 75px
+
+.irs-line
+  height: 10px
+  top: 33px
+  background: #D1D1D1
+
+.irs-line-left, .irs-line-mid, .irs-line-right
+  height: 8px
+
+.irs-bar
+  height: 10px
+  top: 33px
+  background: $light-primary
+
+.irs-bar-edge
+  height: 10px
+  top: 33px
+  width: 14px
+  border-right: 0
+  background: #428bca
+
+.irs-shadow
+  height: 2px
+  top: 38px
+  background: #000
+  opacity: 0.3
+
+.lt-ie9 .irs-shadow
+  filter: alpha(opacity = 30)
+
+.irs-slider
+  @extend .component--active
+  top: 25px
+  width: 15px
+  height: 27px
+  background: $dark-primary
+  cursor: ew-resize
+  &.state_hover, &:hover
+    background: #333
+
+.irs-min, .irs-max
+  color: #333
+  font-size: 12px
+  line-height: 1.333
+  text-shadow: none
+  top: 0
+  padding: 1px 5px
+  background: rgba(0, 0, 0, 0.1)
+  border-radius: 3px
+  -moz-border-radius: 3px
+
+.lt-ie9
+  .irs-min, .irs-max
+    background: #ccc
+
+.irs-from, .irs-to, .irs-single
+  @extend .component--active
+  font-size: 14px
+  line-height: 1.333
+  text-shadow: none
+  padding: 1px 5px
+  border-radius: 3px
+
+.lt-ie9
+  .irs-from, .irs-to, .irs-single
+    background: #999
+
+.irs-grid
+  height: 27px
+
+.irs-grid-pol
+  opacity: 0.5
+  background: #428bca
+  &.small
+    background: #999
+
+.irs-grid-text
+  bottom: 5px
+  color: #99a4ac
+
+.irs-disabled

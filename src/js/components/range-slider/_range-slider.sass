@@ -1,0 +1,99 @@
+.range-slider
+  @extend .clearfix
+
+// reset slider
+.range-slider__input
+    -webkit-appearance: none
+    &::-webkit-slider-thumb
+        -webkit-appearance: none
+    &:focus
+        outline: none
+    &::-ms-track
+        width: 100%
+        cursor: pointer
+        background: transparent
+        border-color: transparent
+        color: transparent
+
+// style the slider
+.range-slider__input__container
+    float: left
+    margin: 0 20px 0 0
+    width: 50%
+
+.range-slider__output__container
+    display: inline-block
+    width: 250px
+
+.range-slider__output__min
+    float: left
+    margin-right: 10px
+    label
+        display: block
+
+.range-slider__output__max
+    label
+        display: block
+
+.range-slider__input
+    margin-bottom: 15px
+    width: 200px !important
+    display: block
+    font-size: 1em
+    margin: 10px 0 0 0
+
+    // style the handle
+    &::-webkit-slider-thumb
+        height: 20px
+        width: 10px
+        background: $brand-primary
+        cursor: ew-resize
+        margin-top: -5px
+        z-index: 1
+
+    // style the track
+    &::-webkit-slider-runnable-track
+        position: relative
+        height: 10px
+        cursor: pointer
+        background: $light-primary
+
+    &:disabled
+        opacity: .5
+
+.range-slider__output
+    width: 100px
+    background-color: $light-primary
+    border: none
+    line-height: 30px
+    outline: none
+    padding: 0 8px
+    color: $dark-primary
+    font-weight: bold
+    &:focus
+        background-color: lighten($light-primary, 10%)
+
+// just something I was testing - ignore for now
+// .range-slider-new
+//     margin-top: 40px
+//     position: relative
+//     width: 300px
+
+//     .range-slider-new__track
+//         height: 12px
+//         background-color: #ccc
+
+//     .range-slider-new__handle
+//         position: absolute
+//         -webkit-user-drag: element
+//         width: 10px
+//         height: 20px
+//         background-color: #666
+//         top: -4px
+//         cursor: ew-resize
+
+//         &--min
+//             left: 10px
+
+//         &--max
+//             left: 40px

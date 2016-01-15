@@ -53,6 +53,9 @@ export default Vue.extend({
       })
       options.sort(compareLabel)
       return options
+    },
+    selectedLength: function () {
+      return this.selected.length
     }
   },
   methods: {
@@ -68,7 +71,7 @@ export default Vue.extend({
       $typeahead.typeahead(options, {
         name: 'items',
         display: 'label',
-        limit: 10,
+        limit: 1000,
         source: itemLabelMatcher(this.unselected)
       })
 

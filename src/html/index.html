@@ -4,17 +4,48 @@
     <h1>Vue Components</h1>
 
     <div id="app">
+        
+        <pre>
+          ${ sliderTwo | json }
+        </pre>
 
         <h2>CheckBlock</h2>
         <check-block v-for="item in propertyTypes" v-bind:item="item"></check-block>
 
         <h2>MultiSelect</h2>
         <multi-select
-            select-label="Select a state"
+            select-label="Click to select a state..."
             v-bind:options="states"
             @item-added="addState"
             @item-removed="removeState">
         </multi-select>
+
+        <h2>Range Slider</h2>
+
+        <range-slider
+          min="0"
+          max="100"
+          v-bind:from="propertyOfferPrice.from"
+          v-bind:to="propertyOfferPrice.to"
+          type="double"
+          grid="true"
+          step="5"
+          min-interval="5"
+          @on-change="handlePropertyOfferPriceChange">
+        </range-slider>
+        
+        <range-slider
+          min="0"
+          max="1000"
+          v-bind:from="sliderTwo.from"
+          v-bind:to="sliderTwo.to"
+          type="double"
+          grid="true"
+          step="50"
+          min-interval="50"
+          @on-change="handleSliderTwoChange">
+        </range-slider>
+        
 
     </div>
 
