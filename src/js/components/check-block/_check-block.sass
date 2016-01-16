@@ -21,8 +21,13 @@
             height: 18px
             float: left
             margin-right: 8px
+        &:hover
+          @extend .component
+          @extend .component--active
+          
     input
         display: none
+
     &--active
         label
             @extend .component

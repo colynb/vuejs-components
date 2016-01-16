@@ -5,37 +5,41 @@ import RangeSlider from './components/range-slider/range-slider'
 
 Vue.config.delimiters = ['${', '}']
 
-Vue.transition('bounce', {
-  enterClass: 'bounceInLeft',
-  leaveClass: 'bounceOutRight'
-})
-
 var app = new Vue({
   el: '#app',
   ready: function () {
     this.fetchData()
   },
+  timeOut: null,
   data: {
-    propertyTypes: [],
-    states: [],
-    propertyOfferPrice: {
-      from: 20,
-      to: 50
-    },
-    sliderTwo: {
-      from: 200,
-      to: 500
+    filtersChanged: false,
+    filters: {
+      propertyTypes: [],
+      states: [],
+      propertyOfferPrice: {
+        from: 20,
+        to: 50
+      },
+      sliderTwo: {
+        from: 200,
+        to: 500
+      }
     }
   },
   methods: {
+    filtersHaveChanged: function () {
+      this.filtersChanged = true
+      clearTimeout(this.timeOut)
+      this.timeOut = setTimeout(() => this.filtersChanged = false, 2000)
+    },
     handleSliderTwoChange: function (sliderTwo) {
-      this.sliderTwo = Object.assign(this.sliderTwo, sliderTwo)
+      this.filters.sliderTwo = Object.assign(this.filters.sliderTwo, sliderTwo)
     },
     handlePropertyOfferPriceChange: function (propertyOfferPrice) {
-      this.propertyOfferPrice = Object.assign(this.propertyOfferPrice, propertyOfferPrice)
+      this.filters.propertyOfferPrice = Object.assign(this.filters.propertyOfferPrice, propertyOfferPrice)
     },
     addState: function (stateValue) {
-      this.states = this.states.map(function (c) {
+      this.filters.states = this.filters.states.map(function (c) {
         if (c.value === stateValue) {
           c.selected = true
         }
@@ -48,7 +52,7 @@ var app = new Vue({
     fetchData: function () {
       // simulate ajax request
       setTimeout(function () {
-        this.propertyTypes = [
+        this.filters.propertyTypes = [
           {
             label: 'Single Family',
             value: 'single-family',
@@ -66,7 +70,7 @@ var app = new Vue({
           }
         ]
 
-        this.states = [{'label': 'Indiana', 'value': 'IN', 'selected': false},
+        this.filters.states = [{'label': 'Indiana', 'value': 'IN', 'selected': false},
           {'label': 'Alabama', 'value': 'AL', 'selected': false},
           {'label': 'California', 'value': 'CA', 'selected': false},
           {'label': 'Colorado', 'value': 'CO', 'selected': false},
@@ -85,13 +89,19 @@ var app = new Vue({
           {'label': 'Washington', 'value': 'WA', 'selected': false},
           {'label': 'Wisconsin', 'value': 'WI', 'selected': false}]
 
-        this.sliderTwo.from = 300
-        this.sliderTwo.to = 600
-      }.bind(this), 1)
+        this.filters.sliderTwo.from = 300
+        this.filters.sliderTwo.to = 600
+
+      }.bind(this), 2000)
     }
   },
-  components: {
-    CheckBlock,
-    MultiSelect,
-  RangeSlider}
+  watch: {
+    'filters': {
+      handler: function () {
+        this.filtersHaveChanged()
+      },
+      deep: true
+    }
+  },
+  components: {CheckBlock,MultiSelect,RangeSlider}
 })

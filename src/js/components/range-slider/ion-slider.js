@@ -8,7 +8,7 @@ export default {
     var $el = $(this.el)
     var name = $el.attr('name')
     var opts = {
-      type: 'double',
+      type: this.params.options.type,
       min: this.params.options.min,
       max: this.params.options.max,
       from: this.params.options.from,

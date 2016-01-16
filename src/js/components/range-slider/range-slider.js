@@ -1,20 +1,17 @@
 import Vue from 'vue'
 import IonSlider from './ion-slider'
-
+var coerceInt = function (val) { return parseInt(val) }
 export default Vue.extend({
   template: require('raw!./range-slider.html'),
   props: {
-    from: null,
-    to: null,
-    min: null,
-    max: null,
-    step: null,
-    grid: null,
-    minInterval: {
-      coerce: function (val) {
-        return parseInt(val)
-      }
-    }
+    type: { default: 'double'},
+    from: { default: 0 },
+    to: { default: 0, coerce: coerceInt },
+    min: { default: 0, coerce: coerceInt },
+    max: { default: 100, coerce: coerceInt },
+    step: { default: 5, coerce: coerceInt },
+    grid: { default: true, coerce: function (val) { return (val === true || val === 'true') } },
+    minInterval: { default: 5, coerce: coerceInt }
   },
   watch: {
     from: function (from) {
@@ -23,14 +20,16 @@ export default Vue.extend({
       }
     },
     to: function (to) {
-      if (to < this.from + this.minInterval) {
-        this.to = parseInt(this.from) + this.minInterval
+      var from = parseInt(this.from)
+      if (to < from + this.minInterval) {
+        this.to = from + this.minInterval
       }
     }
   },
   computed: {
     options: function () {
       return {
+        type: this.type,
         from: this.from,
         to: this.to,
         min: this.min,
@@ -47,10 +46,8 @@ export default Vue.extend({
       var value = e.target.value
       var opts = {}
       opts[type] = value
-      // this.$sliderInstance.update(opts)
-      this.$dispatch('on-change', opts)
+      this.$dispatch('changed', opts)
     }
   },
-  directives: {
-  IonSlider}
+  directives: {IonSlider}
 })

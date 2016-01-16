@@ -3,19 +3,15 @@
 {% block content %}
     <h1>Vue Components</h1>
 
-    <div id="app">
-        
-        <pre>
-          ${ sliderTwo | json }
-        </pre>
+    <div id="app" v-cloak>
 
         <h2>CheckBlock</h2>
-        <check-block v-for="item in propertyTypes" v-bind:item="item"></check-block>
+        <check-block v-for="item in filters.propertyTypes" v-bind:item="item"></check-block>
 
         <h2>MultiSelect</h2>
         <multi-select
             select-label="Click to select a state..."
-            v-bind:options="states"
+            v-bind:options="filters.states"
             @item-added="addState"
             @item-removed="removeState">
         </multi-select>
@@ -25,29 +21,29 @@
         <range-slider
           min="0"
           max="100"
-          v-bind:from="propertyOfferPrice.from"
-          v-bind:to="propertyOfferPrice.to"
+          v-bind:from.sync="filters.propertyOfferPrice.from"
+          v-bind:to.sync="filters.propertyOfferPrice.to"
           type="double"
           grid="true"
           step="5"
           min-interval="5"
-          @on-change="handlePropertyOfferPriceChange">
+          v-on:changed="handlePropertyOfferPriceChange">
         </range-slider>
         
         <range-slider
           min="0"
           max="1000"
-          v-bind:from="sliderTwo.from"
-          v-bind:to="sliderTwo.to"
+          v-bind:from.sync="filters.sliderTwo.from"
+          v-bind:to.sync="filters.sliderTwo.to"
           type="double"
           grid="true"
           step="50"
           min-interval="50"
-          @on-change="handleSliderTwoChange">
+          v-on:changed="handleSliderTwoChange">
         </range-slider>
         
-
-    </div>
+        <div v-if="filtersChanged" class="filters-updated-alert" transition="fade">Filters Changed</div>
+    </div> <!-- END VUEJS APP -->
 
 {% endblock %}
 
