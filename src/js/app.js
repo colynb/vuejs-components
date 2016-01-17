@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import CheckBlock from './components/check-block/check-block'
+import SingleSelect from './components/single-select/single-select'
 import MultiSelect from './components/multi-select/multi-select'
 import RangeSlider from './components/range-slider/range-slider'
 
@@ -14,6 +15,23 @@ var app = new Vue({
   data: {
     filtersChanged: false,
     filters: {
+      favoriteFoods: [
+        {
+          label: 'Pizza',
+          value: 'pizza',
+          selected: false
+        },
+        {
+          label: 'Spaghetti',
+          value: 'spaghetti',
+          selected: false
+        },
+        {
+          label: 'Sushi',
+          value: 'suhi',
+          selected: false
+        }
+      ],
       propertyTypes: [],
       states: [],
       propertyOfferPrice: {
@@ -37,6 +55,17 @@ var app = new Vue({
     },
     handlePropertyOfferPriceChange: function (propertyOfferPrice) {
       this.filters.propertyOfferPrice = Object.assign(this.filters.propertyOfferPrice, propertyOfferPrice)
+    },
+    addFavoriteFood: function (foodValue) {
+      this.filters.favoriteFoods = this.filters.favoriteFoods.map(function (c) {
+        if (c.value === foodValue) {
+          c.selected = true
+        }
+        return c
+      })
+    },
+    removeFavoriteFood: function (food) {
+      food.selected = false
     },
     addState: function (stateValue) {
       this.filters.states = this.filters.states.map(function (c) {
@@ -103,5 +132,5 @@ var app = new Vue({
       deep: true
     }
   },
-  components: {CheckBlock,MultiSelect,RangeSlider}
+  components: {SingleSelect,CheckBlock,MultiSelect,RangeSlider}
 })

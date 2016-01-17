@@ -1,0 +1,56 @@
+.single-select
+  .typeahead, .tt-query, .tt-hint
+    border: none
+    outline: none
+
+  .tt-query
+
+  .tt-hint
+    color: #999
+
+  .tt-menu
+    width: 422px
+    background-color: #eee
+    max-height: 150px
+    overflow-y: auto
+
+  .typeahead
+    background-color: #ccc
+    color: #fff
+    margin-bottom: 5px
+    &:focus
+      background-color: #eee !important
+      &::-webkit-input-placeholder
+          color: #ccc
+  .tt-suggestion
+    padding: 3px 10px
+    font-weight: bold
+    &:hover
+      cursor: pointer
+      background-color: $light-primary
+    &.tt-cursor
+      color: #fff
+      background-color: $light-primary
+    p
+      margin: 0
+
+.single-select__display
+  @extend .component
+  @extend .component--active
+  padding: 10px
+  border: none
+  display: inline-block
+  vertical-align: top
+  *display: inline
+  zoom: 1
+  margin: 0px
+  outline: none
+
+.single-select__control
+  display: inline-block
+  padding: 10px
+  font-weight: bold
+  font-size: .9em
+  color: $light-primary
+  background-color: $dark-primary
+  cursor: pointer

@@ -4,9 +4,14 @@
     <h1>Vue Components</h1>
 
     <div id="app" v-cloak>
-
-        <h2>CheckBlock</h2>
-        <check-block v-for="item in filters.propertyTypes" v-bind:item="item"></check-block>
+        
+        <h2>SingleSelect</h2>
+        <single-select
+          select-label="Select a food..."
+          v-bind:options="filters.favoriteFoods"
+          v-on:item-added="addFavoriteFood"
+          v-on:item-removed="removeFavoriteFood">
+        </single-select>
 
         <h2>MultiSelect</h2>
         <multi-select
@@ -15,6 +20,9 @@
             @item-added="addState"
             @item-removed="removeState">
         </multi-select>
+
+        <h2>CheckBlock</h2>
+        <check-block v-for="item in filters.propertyTypes" v-bind:item="item"></check-block>
 
         <h2>Range Slider</h2>
 

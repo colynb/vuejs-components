@@ -1,6 +1,10 @@
 <div class="multi-select">
-    <input class="typeahead" type="text" v-bind:placeholder="selectLabel" v-bind:disabled="isDisabled">
-    Num Selected: <span class="label label-default">${ selected.length }</span>
+      <p>
+        <label>
+        Selected: <span class="label label-danger">${ selected.length }</span>
+      </label>
+      </p>
+      <input class="typeahead" type="text" v-bind:placeholder="selectLabel" v-bind:disabled="isDisabled">
     <div class="multi-select__items-container">
         <span class="multi-select__item" transition="multi-select" v-for="item in selected" v-on:click="removeItem(item)">${ item.label }</span>
     </div>
